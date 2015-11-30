@@ -2,11 +2,8 @@
 OVERVIEW
 ==========================================================================
 
-This is Project 5 of Udacity's Full Stack Nanodegree Program - an item
-catalog web application on Ubuntu virtual server. The catalog application
-is the same application I used in Project 3 (Personal Budget application)
-but configured to work on the new Ubuntu environment and thus publically
-accessible via a web browser.
+This is my first web application. It allows you to keep track of your 
+budget and expenses. 
 
 ==========================================================================
 HOW TO RUN THE APPLICATION
