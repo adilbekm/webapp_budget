@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel='stylesheet' type='text/css' href='{{url_for('static', filename='styles.css')}}'>
+</head>
+<body>
+<div class='navigation'>
+	<ul id='navigation_left'>
+		<li><a href='{{url_for('showPeriods')}}'>Home</a></li>
+	</ul>
+	<ul id='navigation_right'>
+		{% if 'email' in session %}
+		<li><a href='{{url_for('logout')}}'>Logout</a></li>
+		{% else %}
+		<li><a href='{{url_for('register')}}'>Register</a></li>
+		<li><a href='{{url_for('login')}}'>Login</a></li>
+		{% endif %}
+	</ul>
+</div>
+<div class='flash'>
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+	{% for message in messages %}
+	{{ message }}<br>
+	{% endfor %}
+{% endif %}
+{% endwith %}
+</div>
+<div class='left_bar'>
+	<a href='{{url_for('newPeriod')}}'>Create New Period</a><br>
+	{% for item in periods %}
+	{% if item.id == period_id %}
+		<a id='currentPeriod' href='{{url_for('showBudget',period_id=item.id)}}'>{{item.name}}</a>
+	{% else %}
+		<a href='{{url_for('showBudget',period_id=item.id)}}'>{{item.name}}</a>
+	{% endif %}
+	{% endfor %}
+</div>
+<div class='main'>
+	<div id='title'>{{period.name}}</div><br>
+	<table>
+		<thead>
+			<tr>
+				<th class='columnAlignedLeft lineSolid'>Budget Category:</th>
+				<th class='columnAlignedRight lineSolid'>Budget:</th>
+				<th class='columnAlignedRight lineSolid'>Actual:</th>
+				<th class='columnAlignedRight lineSolid'>Balance:</th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for item in budgets %}
+			<tr>
+				<td class='columnAlignedLeft lineDashed'>{{item.name}}</td>
+				<td class='columnAlignedRight lineDashed'>{{item.budget_amount}}</td>
+				<td class='columnAlignedRight lineDashed'>{{item.actual_amount}}</td>
+				<td class='columnAlignedRight lineDashed'>{{item.budget_amount - item.actual_amount}}</td>
+				<td class='columnLast'>
+				<a href='{{url_for('editBudget',period_id=item.period_id,budget_id=item.id)}}'>Edit</a>
+				</td>
+				<td class='columnLast'>
+				<a href='{{url_for('deleteBudget',period_id=item.period_id,budget_id=item.id)}}'>Delete</a><br>
+				</td>
+			</tr>
+			{% endfor %}
+			<tr>
+				<td class='lineSolidAbove'></td>
+				<td class='columnAlignedRight lineSolidAbove'>{{total_budget}}</td>
+				<td class='columnAlignedRight lineSolidAbove'>{{total_actual}}</td>
+				<td class='columnAlignedRight lineSolidAbove'>{{total_budget - total_actual}}</td>
+			</tr>
+		<tbody>
+	</table>
+	<a href='{{url_for('newBudget',period_id=period_id)}}'>Add Budget Category</a><br>
+	<a href='{{url_for('editPeriod',period_id=period_id)}}'>Edit Period Name</a><br>
+	<a href='{{url_for('deletePeriod',period_id=period_id)}}'>Delete Period</a><br>
+<div>
+</body>
+</html>

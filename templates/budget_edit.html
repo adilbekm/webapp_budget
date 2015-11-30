@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel='stylesheet' type='text/css' href='{{url_for('static', filename='styles.css')}}'>
+</head>
+<body>
+<div class='navigation'>
+	<ul id='navigation_left'>
+		<li><a href='{{url_for('showPeriods')}}'>Home</a></li>
+	</ul>
+	<ul id='navigation_right'>
+		{% if 'email' in session %}
+		<li><a href='{{url_for('logout')}}'>Logout</a></li>
+		{% else %}
+		<li><a href='{{url_for('register')}}'>Register</a></li>
+		<li><a href='{{url_for('login')}}'>Login</a></li>
+		{% endif %}
+	</ul>
+</div>
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+	<div class='flash'>
+	{% for message in messages %}
+	{{ message }}<br>
+	{% endfor %}
+	</div>
+{% endif %}
+{% endwith %}
+<div class='left_bar'>
+	<a href='{{url_for('newPeriod')}}'>Create New Period</a><br>
+	{% for item in periods %}
+	{% if item.id == period_id %}
+		<a id='currentPeriod' href='{{url_for('showBudget',period_id=item.id)}}'>{{item.name}}</a>
+	{% else %}
+		<a href='{{url_for('showBudget',period_id=item.id)}}'>{{item.name}}</a>
+	{% endif %}
+	{% endfor %}
+</div>
+<div class='main'>
+<div id='containerUncentered'>
+<ul id='labels'>
+	<li>Category name:</li>
+	<li>Budget amount:</li>
+	<li>Actual amount:</li>
+</ul>
+<div id='inputs'>
+	<form method='POST'>
+	<input type='text' name='budget_name' value='{{budget.name}}' size='25' autofocus><br>
+	<input type='text' name='budget_amount' value='{{budget.budget_amount}}' size='10'><br>
+	<input type='text' name='actual_amount' value='{{budget.actual_amount}}' size='10'><br>
+	<input type='submit' value='Save'>
+	</form>
+</div>
+</div>
+</div>
+</body>
+</html>

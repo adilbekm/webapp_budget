@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel='stylesheet' type='text/css' href='{{url_for('static', filename='styles.css')}}'>
+</head>
+<body>
+<div class='navigation'>
+	<ul id='navigation_left'>
+		<li><a href='{{url_for('showPeriods')}}'>Home</a></li>
+	</ul>
+	<ul id='navigation_right'>
+		{% if 'email' in session %}
+		<li><a href='{{url_for('logout')}}'>Logout</a></li>
+		{% else %}
+		<li><a href='{{url_for('register')}}'>Register</a></li>
+		<li><a href='{{url_for('login')}}'>Login</a></li>
+		{% endif %}
+	</ul>
+</div>
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+	<div class='flash'>
+	{% for message in messages %}
+	{{ message }}<br>
+	{% endfor %}
+	</div>
+{% endif %}
+{% endwith %}
+<div class='left_bar'>
+	<a href='{{url_for('newPeriod')}}'>Create New Period</a><br>
+	{% for item in items %}
+	<a href='{{url_for('showBudget',period_id=item.id)}}'>{{item.name}}</a>
+	{% endfor %}
+</div>
+<div class='main'>
+	Hi, {{username}}!<br>
+	<p>This application is a great way to track your personal budget and expenses.
+	It works as follows: you create a budget period, let's say "June 2015", and then you add
+	categories inside it like "Rent" or "Car payment" along with the budgeted
+	dollar amounts. As you go through June and spend money, you come here and
+	enter your expenses in the corresponding budget categories.</p>
+	<p>The application calculates and shows the balance for each category as well as for
+	the entire period. At any given time, you can see how well (or how bad) you are doing
+	for the period and for each of the categories. Perhaps you are doing great with your
+	food expenses this month, and so you can pat yourself on the back and take an extra
+	night out with your friends. Or maybe you've overspent on your miscellaneous items
+	and therefore should cut back on other categories or plan to spend less next month.
+	Whatever the case, this application will help you see your budget in real time
+	and help you become smarter about your money.</p>
+	<p>The best way to understand how it works is to start using the application.
+	So, go ahead and create your first budget and start tracking your expenses!</p>
+</div>
+</body>
+</html>

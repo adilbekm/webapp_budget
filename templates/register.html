@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel='stylesheet' type='text/css' href='{{url_for('static', filename='styles.css')}}'>
+</head>
+<body>
+<div class='navigation'>
+	<ul id='navigation_left'>
+		<li><a href='{{url_for('showPeriods')}}'>Home</a></li>
+	</ul>
+	<ul id='navigation_right'>
+		{% if 'email' in session %}
+		<li><a href='{{url_for('logout')}}'>Logout</a></li>
+		{% else %}
+		<li><a href='{{url_for('register')}}'>Register</a></li>
+		<li><a href='{{url_for('login')}}'>Login</a></li>
+		{% endif %}
+	</ul>
+</div>
+<div class='flash'>
+	{% with messages = get_flashed_messages() %}
+	{% if messages %}
+		{% for message in messages %}
+		{{ message }}<br>
+		{% endfor %}
+	{% endif %}
+	{% endwith %}
+</div>
+<div id='containerCentered'>
+<ul id='labels'>
+	<li>Name:</li>
+	<li>Email:</li>
+	<li>Password:</li>
+	<li>Confirm pwd:</li>
+</ul>
+<div id='inputs'>
+	<form method='POST' action '.'>
+	<input type='text' name='name' size='20' autofocus>
+	<input type='text' name='email' size='35'>
+	<input type='password' name='password' size='20'>
+	<input type='password' name='pwdconfirm' size='20'>
+	<input type='submit' value='Register account'>
+</div>
+</div>
+</body>
+</html>

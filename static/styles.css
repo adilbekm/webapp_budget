@@ -1,0 +1,179 @@
+/* Stripping off default margin and padding */ 
+html, ul {
+    margin: 0;
+    padding: 0;
+}
+/* Set the background color to dark grey */
+html {
+    background: rgb(100,98,102);
+}
+body {
+    font-family: Arial, sans-serif;
+    font-size: 0.9em;
+    padding: 0;
+    margin: 0 auto; /* to center all content */
+    background: rgb(255,255,255);
+    width: 960px;
+    min-height: 500px;
+}
+/* To contain floating elements (when they exceed min-height of 500px) */
+body:after {
+    content:"";
+    display: block;
+    clear: both;
+}
+a, a:link, a:visited, a:active {
+    text-decoration: none;
+    color: #0000ff;
+}
+a:hover, .navigation a:hover {
+    color: #ff0000;
+}
+.navigation {
+    background: rgb(85,125,255);
+    height: 15px;
+    padding: 5px 10px 5px 10px;
+}
+.navigation li a {
+    color: white;
+}
+.flash {
+    background: rgb(255,200,200); /* light red */
+    text-align: center;
+    width: 960px;
+    position: fixed;
+}
+.left_bar {
+    background: rgb(225,225,225);
+    width: 170px;
+    min-height: 465px;
+    padding: 20px 10px 10px 10px;
+    float: left;
+}
+.left_bar a {
+    display: block;
+    width: 170px;
+    text-decoration: none;
+}
+.main {
+    display: block;
+    width: 750px;
+    padding: 20px 10px 10px 10px;
+    float: right;
+}
+li {
+    display: inline;
+    list-style-type: none;
+}
+#navigation_left {
+    float: left;
+}
+#navigation_left li {
+    margin-right: 10px;
+}
+#navigation_right {
+    float: right;
+}
+#navigation_right li {
+    margin-left: 10px;
+}
+#currentPeriod {
+    display: block;
+    background-color: #ffffff;
+    width: 180px;
+}
+#newPeriod {
+    display: block;
+    background-color: #ffffff;
+    width: 180px;    
+}
+#centerBlock {
+    margin-top: 30px;
+    margin-left: 100px;
+    margin-right: 100px;
+    text-align: center;
+}
+#centerBlock p:first-child {
+    font-size: 1.5em;
+}
+table, th, td {
+    font-weight: normal;
+    border-collapse: collapse;
+    padding-top: 2px;
+    padding-bottom: 2px;
+}
+.columnAlignedLeft {
+    text-align: left;
+    width: 220px;
+}
+.columnAlignedRight {
+    text-align: right;
+    width: 80px;
+}
+.columnLast {
+    text-align: right;
+    width: 50px;
+}
+.lineSolid {
+    border-bottom: 1px solid black;
+}
+.lineSolidAbove {
+    border-top: 1px solid black;
+}
+.lineDashed {
+    border-bottom: 1px dashed black;
+}
+#title {
+    font-size: 1.5em;
+}
+#containerCentered {
+    width: 400px;
+    height: 300px;
+    padding-top: 30px;
+    margin: auto;
+}
+#containerUncentered {
+    width: 400px;
+    height: 300px;
+    padding-top: 5px;
+}
+#labels {
+    float: left;
+}
+#labels li {
+    display: block;
+    list-style-type: none;
+    width: 90px;
+    padding-left: 55px;
+    padding-top: 3px;
+    padding-bottom: 4px;
+}
+#containerUncentered #labels li {
+    display: block;
+    list-style-type: none;
+    width: 140px;
+    padding-left: 5px;
+    padding-top: 3px;
+    padding-bottom: 4px;
+}
+#inputs {
+    float: right;
+    display: block;
+    width: 245px;
+}
+#signInButton {
+    width: 114px;
+    height: 50px;
+    margin: auto;
+}
+#localSignInButton {
+    width: 114px;
+    height: 23px;
+    padding-top: 7px;
+    border-radius: 3px;
+    text-align: center;
+    background-color: rgb(85,125,255);
+    font-size: 0.9em;
+    color: white; /* applies to font color */
+    margin: auto;
+}
