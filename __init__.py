@@ -46,8 +46,9 @@ Base.metadata.bind = engine
 DBSession = sessionmaker(bind=engine)
 session = DBSession()
 
-@app.route('/login/', methods=['GET'])
-def login():
+# I am deactivating this function so the login bypasses Google Plus signin.
+# @app.route('/login/', methods=['GET'])
+def login_deactivated():
 	# To prevent Cross-Site Reguest Forgery (CSRF) attacks, we will create
 	# a state token (32-char long random sequence of uppercase letters
 	# and digits) and store it in the login_session under the 'state' key.
@@ -158,8 +159,10 @@ def gconnect():
 	flash("You are now logged in as %s" % user_name)
 	return output
 
-@app.route('/login_app/', methods=['GET','POST'])
-def login_app():
+# I am renaming this function from 'login_app' to 'login' in order to make it
+# the default login method (bypassing Google Plus sign in).
+@app.route('/login/', methods=['GET','POST'])
+def login():
 	if request.method == 'GET':
 		return render_template('login_app.html')
 	else:
