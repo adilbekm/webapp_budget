@@ -28,6 +28,7 @@ a, a:link, a:visited, a:active {
 }
 a:hover, .navigation a:hover {
     color: #ff0000;
+    text-decoration: underline;
 }
 .navigation {
     background: rgb(85,125,255);
