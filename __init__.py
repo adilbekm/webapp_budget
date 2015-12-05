@@ -245,8 +245,9 @@ def register():
 	email = request.form['email'].strip().lower()
 	password = request.form['password'].strip()
 	pwdconfirm = request.form['pwdconfirm'].strip()
+	invite_code = request.form['invite_code'].strip()
 	# Check if all fields are non-empty; flash an error otherwise:
-	if not name or not email or not password or not pwdconfirm:
+	if not name or not email or not password or not pwdconfirm or not invite_code: 
 		 flash('Please enter all fields')
 		 return render_template('register.html')
 	# Check if lengths are reasonable (between 2 and 250 chars):
@@ -263,6 +264,9 @@ def register():
 	# Check if email is a valid email address (it has @ and . in that order):
 	if not re.match('[^@]+@[^@]+\.[^@]+',email):
 		flash('Invalid email address')
+		return render_template('register.html')
+	if not invite_code == '747':
+		flash('Invalid invitation code')
 		return render_template('register.html')
 	# Check if email already exists:
 	user = session.query(User).filter_by(email=email).first()
